@@ -1,0 +1,371 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PortfolioCard from '../components/PortfolioCard.astro';
+import { SITE_TITLE } from '../consts';
+
+import portfolioBrand from '../assets/portfolio-brand-strategy.jpg';
+import portfolioDigital from '../assets/portfolio-digital-marketing.jpg';
+import portfolioResearch from '../assets/portfolio-market-research.jpg';
+import portfolioPartnerships from '../assets/portfolio-partnerships.jpg';
+import portfolioSocial from '../assets/portfolio-social-media.jpg';
+import portfolioEvent from '../assets/portfolio-event-marketing.jpg';
+
+const projects = [
+	{
+		title: 'Meridian Brand Refresh',
+		description: 'Led a comprehensive brand identity overhaul for a fintech startup. Redesigned visual language, messaging framework, and brand guidelines that resulted in 40% increase in brand recognition within six months.',
+		tags: ['Brand Strategy', 'Identity Design', 'Guidelines'],
+		image: portfolioBrand,
+		category: 'branding',
+	},
+	{
+		title: 'Everbloom Digital Campaign',
+		description: 'Designed and executed a multi-channel digital marketing campaign spanning social media, email, and content marketing. Achieved 2.5x ROI and grew audience engagement by 180%.',
+		tags: ['Digital Marketing', 'Social Media', 'Content'],
+		image: portfolioDigital,
+		category: 'digital',
+	},
+	{
+		title: 'BrightScale Market Entry',
+		description: 'Conducted comprehensive market research and developed go-to-market strategy for Southeast Asian expansion. Identified key customer segments and competitive positioning opportunities.',
+		tags: ['Market Research', 'Strategy', 'Analysis'],
+		image: portfolioResearch,
+		category: 'research',
+	},
+	{
+		title: 'Strategic Partnership Network',
+		description: 'Built and managed a network of 15+ strategic partnerships across technology and lifestyle sectors. Created co-marketing programs that generated $500K+ in partner-driven revenue.',
+		tags: ['Business Development', 'Partnerships'],
+		image: portfolioPartnerships,
+		category: 'bizdev',
+	},
+	{
+		title: 'Lumina Social Presence',
+		description: 'Developed a cohesive social media strategy for a lifestyle brand. Grew Instagram following from 5K to 50K in 8 months through strategic content planning and community engagement.',
+		tags: ['Social Media', 'Content Strategy', 'Growth'],
+		image: portfolioSocial,
+		category: 'digital',
+	},
+	{
+		title: 'Nexus Summit 2025',
+		description: 'Planned and executed a flagship industry conference with 500+ attendees. Managed event marketing, sponsor relations, and post-event engagement strategy.',
+		tags: ['Event Marketing', 'Project Management'],
+		image: portfolioEvent,
+		category: 'events',
+	},
+];
+
+const categories = [
+	{ id: 'all', label: 'All Projects' },
+	{ id: 'branding', label: 'Branding' },
+	{ id: 'digital', label: 'Digital' },
+	{ id: 'research', label: 'Research' },
+	{ id: 'bizdev', label: 'Business Dev' },
+	{ id: 'events', label: 'Events' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`Portfolio — ${SITE_TITLE}`} 
+			description="Explore Alice Aung's portfolio of marketing campaigns, brand strategies, and business development projects." 
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="portfolio-page">
+			<!-- Page Header -->
+			<section class="page-hero">
+				<div class="container">
+					<p class="section-label">Portfolio</p>
+					<h1>Work That <span class="gradient-text">Speaks</span></h1>
+					<p class="page-desc">
+						A curated collection of marketing campaigns, brand strategies, and business development 
+						projects that delivered measurable results and meaningful impact.
+					</p>
+				</div>
+			</section>
+
+			<!-- Filter Tabs -->
+			<section class="filter-section">
+				<div class="container">
+					<div class="filter-tabs" id="filterTabs">
+						{categories.map(cat => (
+							<button 
+								class={`filter-tab ${cat.id === 'all' ? 'active' : ''}`}
+								data-category={cat.id}
+							>
+								{cat.label}
+							</button>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Projects Grid -->
+			<section class="projects-section section-sm">
+				<div class="container">
+					<div class="portfolio-grid" id="portfolioGrid">
+						{projects.map(project => (
+							<div class="portfolio-item" data-category={project.category}>
+								<PortfolioCard 
+									title={project.title}
+									description={project.description}
+									tags={project.tags}
+									image={project.image}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- Process Section -->
+			<section class="process-section section" id="process">
+				<div class="container">
+					<p class="section-label">My Approach</p>
+					<h2 class="section-title">How I <span class="gradient-text">Work</span></h2>
+					<p class="section-subtitle">
+						Every project follows a proven methodology that ensures strategic alignment and measurable outcomes.
+					</p>
+					<div class="process-grid">
+						<div class="process-step">
+							<div class="step-number">01</div>
+							<h3>Discover</h3>
+							<p>Deep research into your market, audience, and competitive landscape to uncover hidden opportunities.</p>
+						</div>
+						<div class="process-step">
+							<div class="step-number">02</div>
+							<h3>Strategize</h3>
+							<p>Craft a data-informed strategy with clear objectives, KPIs, and a roadmap for execution.</p>
+						</div>
+						<div class="process-step">
+							<div class="step-number">03</div>
+							<h3>Execute</h3>
+							<p>Bring the strategy to life through creative campaigns, content, and partnership activations.</p>
+						</div>
+						<div class="process-step">
+							<div class="step-number">04</div>
+							<h3>Optimize</h3>
+							<p>Continuously measure, learn, and refine to maximize impact and return on investment.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA -->
+			<section class="portfolio-cta section-sm">
+				<div class="container">
+					<div class="cta-card glass-card">
+						<h2>Have a Project in Mind?</h2>
+						<p>Let's discuss how strategic marketing and business development can transform your business.</p>
+						<a href="/contact" class="btn btn-primary">
+							Start a Conversation
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+	}
+	.section-label {
+		text-align: center;
+		font-size: 0.85rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--rose-400);
+		margin-bottom: 0.75rem;
+	}
+
+	/* ── Page Hero ── */
+	.page-hero {
+		padding: calc(var(--nav-height) + 4rem) 0 3rem;
+		background: linear-gradient(180deg, var(--tan-50), var(--rose-50));
+		text-align: center;
+	}
+	.page-hero h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+	}
+	.page-desc {
+		font-size: 1.1rem;
+		color: var(--text-muted);
+		max-width: 600px;
+		margin: 0 auto;
+		line-height: 1.7;
+	}
+
+	/* ── Filter Tabs ── */
+	.filter-section {
+		padding: 2rem 0;
+		background: var(--bg-primary);
+		border-bottom: 1px solid var(--border-light);
+		position: sticky;
+		top: var(--nav-height);
+		z-index: 50;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+	.filter-tabs {
+		display: flex;
+		gap: 0.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.filter-tab {
+		padding: 0.5rem 1.25rem;
+		border: 1.5px solid var(--border-light);
+		border-radius: var(--radius-full);
+		background: var(--bg-card);
+		color: var(--text-secondary);
+		font-family: var(--font-inter), system-ui, sans-serif;
+		font-size: 0.85rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all var(--transition-base);
+	}
+	.filter-tab:hover {
+		border-color: var(--rose-300);
+		color: var(--rose-500);
+	}
+	.filter-tab.active {
+		background: linear-gradient(135deg, var(--rose-400), var(--rose-500));
+		color: #fff;
+		border-color: var(--rose-400);
+	}
+
+	/* ── Portfolio Grid ── */
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5rem;
+	}
+	.portfolio-item {
+		transition: all 0.4s ease;
+	}
+	.portfolio-item.hidden {
+		display: none;
+	}
+
+	/* ── Process ── */
+	.process-section {
+		background: var(--tan-100);
+	}
+	.process-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.5rem;
+	}
+	.process-step {
+		background: var(--bg-card);
+		border: 1px solid var(--border-light);
+		border-radius: var(--radius-lg);
+		padding: 2rem;
+		text-align: center;
+		transition: all var(--transition-base);
+		position: relative;
+	}
+	.process-step:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-lg);
+		border-color: var(--rose-200);
+	}
+	.step-number {
+		font-family: var(--font-playfair), Georgia, serif;
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--rose-200);
+		line-height: 1;
+		margin-bottom: 1rem;
+	}
+	.process-step h3 {
+		font-family: var(--font-inter), system-ui, sans-serif;
+		font-size: 1.1rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+	.process-step p {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+		line-height: 1.65;
+		margin: 0;
+	}
+
+	/* ── CTA ── */
+	.portfolio-cta {
+		background: var(--bg-primary);
+	}
+	.cta-card {
+		text-align: center;
+		padding: 4rem 3rem;
+	}
+	.cta-card h2 {
+		margin-bottom: 1rem;
+	}
+	.cta-card p {
+		color: var(--text-muted);
+		max-width: 500px;
+		margin: 0 auto 2rem;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 1024px) {
+		.portfolio-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+		.process-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 640px) {
+		.portfolio-grid,
+		.process-grid {
+			grid-template-columns: 1fr;
+		}
+		.page-hero h1 {
+			font-size: 2.25rem;
+		}
+		.cta-card {
+			padding: 3rem 1.5rem;
+		}
+	}
+</style>
+
+<script>
+	// Filter functionality
+	const tabs = document.querySelectorAll('.filter-tab');
+	const items = document.querySelectorAll('.portfolio-item');
+
+	tabs.forEach(tab => {
+		tab.addEventListener('click', () => {
+			const category = tab.getAttribute('data-category');
+			
+			// Update active tab
+			tabs.forEach(t => t.classList.remove('active'));
+			tab.classList.add('active');
+			
+			// Filter items
+			items.forEach(item => {
+				if (category === 'all' || item.getAttribute('data-category') === category) {
+					item.classList.remove('hidden');
+				} else {
+					item.classList.add('hidden');
+				}
+			});
+		});
+	});
+</script>

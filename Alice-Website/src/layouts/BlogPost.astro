@@ -16,41 +16,99 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 100%;
 				margin: 0;
+				padding: 0;
 			}
+			/* Hero Image */
 			.hero-image {
 				width: 100%;
+				max-height: 480px;
+				overflow: hidden;
+				position: relative;
 			}
 			.hero-image img {
 				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				width: 100%;
+				height: 480px;
+				object-fit: cover;
+				margin: 0;
+				border-radius: 0;
 			}
+			.hero-image::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 120px;
+				background: linear-gradient(to top, var(--bg-primary), transparent);
+			}
+			/* Prose Content */
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
 				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				padding: 2em 1em 4em;
+				color: var(--text-secondary);
 			}
 			.title {
-				margin-bottom: 1em;
+				margin-bottom: 2em;
 				padding: 1em 0;
 				text-align: center;
-				line-height: 1;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				font-size: 2.5rem;
+				margin: 0 0 0.75rem 0;
+				color: var(--text-primary);
+				line-height: 1.2;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: var(--text-muted);
+				font-size: 0.9rem;
 			}
 			.last-updated-on {
 				font-style: italic;
+				color: var(--text-muted);
+				font-size: 0.85rem;
+			}
+			.title hr {
+				margin-top: 2rem;
+			}
+
+			/* Back link */
+			.back-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: calc(var(--nav-height) + 1.5rem) 0 1rem;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: var(--text-muted);
+				text-decoration: none;
+				transition: color var(--transition-fast);
+				max-width: 720px;
+				margin: 0 auto;
+				display: flex;
+				padding-left: 1em;
+				padding-right: 1em;
+				width: 720px;
+				max-width: calc(100% - 2em);
+			}
+			.back-link:hover {
+				color: var(--rose-500);
+			}
+
+			/* Mobile */
+			@media (max-width: 768px) {
+				.title h1 {
+					font-size: 1.875rem;
+				}
+				.hero-image img {
+					height: 300px;
+				}
 			}
 		</style>
 	</head>
@@ -59,6 +117,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
+				<a href="/blog" class="back-link">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+					Back to Blog
+				</a>
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 				</div>
