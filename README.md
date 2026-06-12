@@ -1,8 +1,4 @@
-<div align=center>
-
 # 🌹 Alice Aung — Portfolio Website
-
-</div>
 
 A premium, multi-page portfolio website for **Alice Aung (Ku Mudra Aung)** — a Marketing & Business Development professional. Built with [Astro.js](https://astro.build) and styled with a warm **Rose Tanned** color theme.
 
